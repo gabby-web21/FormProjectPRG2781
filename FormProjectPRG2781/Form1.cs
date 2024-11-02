@@ -16,6 +16,7 @@ namespace FormProjectPRG2781
         public Form1()
         {
             InitializeComponent();
+           
         }
         DataTable table = new DataTable(); 
         //specifying file path for text file
@@ -34,12 +35,19 @@ namespace FormProjectPRG2781
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             //declaring and initializing variables with textboxes to refer to them. 
             string studentID = textBox1.Text;
             string studName = textBox2.Text;
-            int studAge = int.Parse(textBox3.Text); 
+            string studAge = textBox1.Text; 
             string course = textBox4.Text;
 
+            if(studentID == null || studName == null || studAge ==  null || course == null)
+            {
+                MessageBox.Show("Please enter information in all fields required (ID, Name, Age, Course");
+            }
+            else
+            {
             try
             {
                 
@@ -62,35 +70,37 @@ namespace FormProjectPRG2781
             textBox2.Text = " ";
             textBox3.Text = " ";
             textBox4.Text = " ";
+            }
         }
 
 
         private void button2_Click(object sender, EventArgs e)
         {
-
             string[] allStudents = File.ReadAllLines(filepath); 
             string[] allValues;
-            for (int i = 0; i < allStudents.Length; i++)
-            {
-                allValues = allStudents[i].ToString().Split(','); 
-                string[] row = new string[allValues.Length];
+                for (int i = 0; i < allStudents.Length; i++)
+                {
+                    allValues = allStudents[i].ToString().Split(',');
+                    string[] row = new string[allValues.Length];
 
-                for (int j = 0; j < allValues.Length; j++)
-                {
-                    row[j] = allValues[j].Trim(); 
-                }
-                try
-                {
-                    table.Rows.Add(row);
+                    for (int j = 0; j < allValues.Length; j++)
+                    {
+                        row[j] = allValues[j].Trim();
+                    }
+                    try
+                    {
+                        table.Rows.Add(row);
 
+                    }
+                    catch (Exception except)
+                    {
+                        MessageBox.Show(except.Message);
+                        throw;
+                    }
                 }
-                catch (Exception except)
-                {
-                    MessageBox.Show(except.Message); 
-                    throw;
-                }
+            
                 
-            }
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
