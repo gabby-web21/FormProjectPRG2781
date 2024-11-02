@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.AddNewStudent = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,14 +45,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // AddNewStudent
             // 
-            this.button1.Location = new System.Drawing.Point(12, 72);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Add Student";
-            this.button1.UseVisualStyleBackColor = true;
+            this.AddNewStudent.Location = new System.Drawing.Point(12, 72);
+            this.AddNewStudent.Name = "AddNewStudent";
+            this.AddNewStudent.Size = new System.Drawing.Size(75, 23);
+            this.AddNewStudent.TabIndex = 0;
+            this.AddNewStudent.Text = "Add Student";
+            this.AddNewStudent.UseVisualStyleBackColor = true;
+            this.AddNewStudent.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -181,7 +182,7 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.AddNewStudent);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -192,7 +193,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button AddNewStudent;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
