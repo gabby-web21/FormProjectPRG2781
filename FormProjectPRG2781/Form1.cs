@@ -39,12 +39,13 @@ namespace FormProjectPRG2781
             //declaring and initializing variables with textboxes to refer to them. 
             string studentID = textBox1.Text;
             string studName = textBox2.Text;
-            string studAge = textBox1.Text; 
+            string studAge = textBox3.Text; 
             string course = textBox4.Text;
 
-            if(studentID == null || studName == null || studAge ==  null || course == null)
+            if(string.IsNullOrWhiteSpace(studentID) || string.IsNullOrWhiteSpace(studName) || string.IsNullOrWhiteSpace(studAge) || string.IsNullOrWhiteSpace(course))
             {
                 MessageBox.Show("Please enter information in all fields required (ID, Name, Age, Course");
+                return; 
             }
             else
             {
@@ -66,53 +67,63 @@ namespace FormProjectPRG2781
                 throw;
             }
 
-            textBox1.Text = " ";
-            textBox2.Text = " ";
-            textBox3.Text = " ";
-            textBox4.Text = " ";
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
             }
         }
 
 
         private void button2_Click(object sender, EventArgs e)
         {
+            table.Rows.Clear(); 
             string[] allStudents = File.ReadAllLines(filepath); 
-            string[] allValues;
-                for (int i = 0; i < allStudents.Length; i++)
+
+            foreach(string student in allStudents)
+            {
+                string[] allValues = student.Split(',').Select(value => value.Trim()).ToArray();
+                if (allValues.Length == table.Columns.Count)
                 {
-                    allValues = allStudents[i].ToString().Split(',');
-                    string[] row = new string[allValues.Length];
-
-                    for (int j = 0; j < allValues.Length; j++)
-                    {
-                        row[j] = allValues[j].Trim();
-                    }
-                    try
-                    {
-                        table.Rows.Add(row);
-
-                    }
-                    catch (Exception except)
-                    {
-                        MessageBox.Show(except.Message);
-                        throw;
-                    }
+                    table.Rows.Add(allValues);
                 }
-            
-                
-            
+                else
+                {
+                    MessageBox.Show("File is incorrect"); 
+                }
+            } 
+           
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            if (e.RowIndex >= 0)
+            {
+                textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                textBox2.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                textBox3.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                textBox4.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+
+            }
+            else
+            {
+                MessageBox.Show("Invalid index number"); 
+            }
         }
 
         
 
         private void button3_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
         }
     }
 }
