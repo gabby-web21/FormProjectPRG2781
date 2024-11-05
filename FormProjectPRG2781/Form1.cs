@@ -16,9 +16,9 @@ namespace FormProjectPRG2781
         public Form1()
         {
             InitializeComponent();
-           
+
         }
-        DataTable table = new DataTable(); 
+        DataTable table = new DataTable();
         //specifying file path for text file
         string filepath = @"C:\Users\Kirsten\source\repos\PRG2781_Project(1)\PRG2781_Project(1)\bin\Debug\students.txt";
 
@@ -35,15 +35,30 @@ namespace FormProjectPRG2781
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             //declaring and initializing variables with textboxes to refer to them. 
             string studentID = textBox1.Text;
             string studName = textBox2.Text;
-            string studAge = textBox3.Text; 
+            int studAge; 
             string course = textBox4.Text;
 
-            if(string.IsNullOrWhiteSpace(studentID) || string.IsNullOrWhiteSpace(studName) || string.IsNullOrWhiteSpace(studAge) || string.IsNullOrWhiteSpace(course))
+            //creating validation for age to make sure a numeric value is entered
+            if (!int.TryParse(textBox3.Text, out studAge))
             {
+                
+                MessageBox.Show("Please enter a numeric value for age e.g. 19");
+                return;
+            }
+            else
+            {
+                studAge = int.Parse(textBox3.Text);
+            }
+            
+
+            if (string.IsNullOrWhiteSpace(studentID) || string.IsNullOrWhiteSpace(studName) || string.IsNullOrWhiteSpace(course))
+            {
+                
+
                 MessageBox.Show("Please enter information in all fields required (ID, Name, Age, Course");
                 return; 
             }
@@ -63,14 +78,15 @@ namespace FormProjectPRG2781
             //error message displayed if try doesnt work
             catch (Exception ex)
             {
-               MessageBox.Show("Error, data not saved" + ex.Message);
-                throw;
+                    MessageBox.Show("Error, data not saved" + ex.Message); 
             }
 
             textBox1.Text = "";
             textBox2.Text = "";
             textBox3.Text = "";
             textBox4.Text = "";
+
+                string query; 
             }
         }
 
@@ -85,31 +101,37 @@ namespace FormProjectPRG2781
                 string[] allValues = student.Split(',').Select(value => value.Trim()).ToArray();
                 if (allValues.Length == table.Columns.Count)
                 {
-                    table.Rows.Add(allValues);
+                    try
+                    {
+                        table.Rows.Add(allValues);
+                    }
+                    catch (Exception eBug)
+                    {
+                        MessageBox.Show("Enter valid ID number" + eBug.Message); 
+                        return;
+                    }
+                   
                 }
                 else
                 {
-                    MessageBox.Show("File is incorrect"); 
+                    MessageBox.Show("Text file error"); 
+                    
                 }
             } 
            
         }
 
+        //this method is for the information to autofill in the textboxes for convenience when editing or updating
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
             {
-                textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                textBox2.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-                textBox3.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                textBox4.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-
-            }
-            else
-            {
-                MessageBox.Show("Invalid index number"); 
+                //string cellValue = dataGridView1.Rows
+                
             }
         }
+
+        
 
         
 
