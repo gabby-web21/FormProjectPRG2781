@@ -20,7 +20,11 @@ namespace FormProjectPRG2781
         }
         DataTable table = new DataTable();
         //specifying file path for text file
-        string filepath = @"C:\Users\Kirsten\source\repos\PRG2781_Project(1)\PRG2781_Project(1)\bin\Debug\students.txt";
+
+        string relativePath = @"Resources\students.txt";
+
+        string filepath;
+        //try open or create file 
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -31,6 +35,21 @@ namespace FormProjectPRG2781
 
             dataGridView1.DataSource = table;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+
+
+            filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+
+            if (!File.Exists(filepath))
+            {
+                MessageBox.Show("File not found, creating new file");
+                //File.Create(filepath).Close();
+            }
+            else
+            {
+                MessageBox.Show("File has been found!"); 
+            }
+            MessageBox.Show("Filepath: " + filepath); 
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -86,7 +105,7 @@ namespace FormProjectPRG2781
             textBox3.Text = "";
             textBox4.Text = "";
 
-                string query; 
+                
             }
         }
 
