@@ -22,8 +22,6 @@ namespace FormProjectPRG2781
         DataTable table = new DataTable();
         //specifying file path for text file
         string filepath = @"Resources\Students.txt";
-
-
         private int studentID;
         private string studName;
         private int studAge;
