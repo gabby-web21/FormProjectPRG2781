@@ -21,7 +21,8 @@ namespace FormProjectPRG2781
         }
         DataTable table = new DataTable();
         //specifying file path for text file
-        string filepath = @"C:\Users\Kirsten\source\repos\FormProjectPRG2781\FormProjectPRG2781\Resources\Students.txt";
+        string filepath = @"Resources\Students.txt";
+
 
         private int studentID;
         private string studName;
@@ -315,6 +316,72 @@ namespace FormProjectPRG2781
             textBox2.Text = "";
             textBox3.Text = "";
             textBox4.Text = "";
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string deleteStudentID = textBox1.Text.Trim();
+            if (string.IsNullOrWhiteSpace(deleteStudentID))
+            {
+                MessageBox.Show("Please enter a valid Student ID.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                var lines = File.ReadAllLines(filepath).ToList();
+                bool studentFound = false;
+
+                for (int i = 0; i < lines.Count; i++)
+                {
+                    var fields = lines[i].Split(',').Select(field => field.Trim()).ToArray();
+                    if (fields[0] == deleteStudentID)
+                    {
+                        lines.RemoveAt(i);
+                        studentFound = true;
+                        break;
+                    }
+
+                }
+                if (studentFound)
+                {
+                    File.WriteAllLines(filepath, lines);  // Rewrite the file without the deleted entry
+                    MessageBox.Show("Student deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadStudentData(); // Refresh the data in the grid
+                }
+                else
+                {
+                    MessageBox.Show("Student ID not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                //var removeLine = lines.FirstOrDefault(line => line.StartsWith(deleteStudentID + ","));
+
+                //if (removeLine != null)
+                //{
+
+                //    lines.Remove(removeLine);
+
+
+                //    File.WriteAllLines(filepath, lines);
+
+                //    MessageBox.Show("Student deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    LoadStudentData();
+                //}
+                //else
+                //{
+
+
+                // MessageBox.Show("Student ID not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                //}
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                throw;
+            }
         }
     }
 }

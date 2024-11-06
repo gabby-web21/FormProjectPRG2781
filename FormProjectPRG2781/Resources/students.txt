@@ -1,6 +1,0 @@
-600850, Gabriella Petersen, 19, Bachlor of Computing
-600938, Angelite Arendse, 19, Bachelor of Computing
-600874, Kaidy Edwards, 20, Bachlor of Computing
-600999, Kirsten Frederiks, 21, Diploma in IT
-1001, Hannah Termia, 21, Graphic Design
-66666, Opium Blaze, 23, Bachelor of Computing
