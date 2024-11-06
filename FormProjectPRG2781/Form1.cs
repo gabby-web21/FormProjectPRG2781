@@ -353,26 +353,7 @@ namespace FormProjectPRG2781
                 {
                     MessageBox.Show("Student ID not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                //var removeLine = lines.FirstOrDefault(line => line.StartsWith(deleteStudentID + ","));
-
-                //if (removeLine != null)
-                //{
-
-                //    lines.Remove(removeLine);
-
-
-                //    File.WriteAllLines(filepath, lines);
-
-                //    MessageBox.Show("Student deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //    LoadStudentData();
-                //}
-                //else
-                //{
-
-
-                // MessageBox.Show("Student ID not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                //}
+               
 
 
             }
