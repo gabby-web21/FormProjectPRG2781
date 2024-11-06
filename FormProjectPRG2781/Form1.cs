@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Design;
+using Microsoft.VisualBasic; 
 
 namespace FormProjectPRG2781
 {
@@ -87,12 +88,23 @@ namespace FormProjectPRG2781
                 {
                     using (StreamReader reader = new StreamReader(filepath))
                     {
-                        string txt;
+                        string txt; 
+                        
                         while ((txt = reader.ReadLine()) != null)
                         {
                             //splitting the line of text into an array of values, seperating them using a comma and
                             //trimming any whitespace
+                            txt = txt.Trim();
+
+                            if (string.IsNullOrWhiteSpace(txt) || string.IsNullOrEmpty(txt))
+                            {
+                                continue;
+                            }
                             string[] allValues = txt.Split(',').Select(value => value.Trim()).ToArray();
+
+                            //MessageBox.Show($"Found {allValues.Length} values in line: {txt}"); 
+
+                            
 
                             if (allValues.Length == table.Columns.Count)
                             {
@@ -109,7 +121,7 @@ namespace FormProjectPRG2781
                             }
                             else
                             {
-                                MessageBox.Show("Text file error");
+                                MessageBox.Show($"Text file error : Expected {table.Columns.Count} values bt found {allValues.Length} in line {txt}");
 
                             }
 
@@ -171,7 +183,7 @@ namespace FormProjectPRG2781
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            //LoadStudentData(); 
             if (File.Exists(filepath))
             {
                 //clearing rows to ensure no duplication
@@ -183,6 +195,12 @@ namespace FormProjectPRG2781
                         string txt;
                         while ((txt = reader.ReadLine()) != null)
                         {
+
+                            txt = txt.Trim();
+                            if (string.IsNullOrWhiteSpace(txt))
+                            {
+                                continue; 
+                            }
                                 //splitting the line of text into an array of values, seperating them using a comma and
                                 //trimming any whitespace
                                 string[] allValues = txt.Split(',').Select(value => value.Trim()).ToArray();
@@ -245,67 +263,82 @@ namespace FormProjectPRG2781
             }
         }
 
+        private bool ISValidStudentID(string studentID)
+        {
+            return studentID.All(char.IsDigit) && studentID.Length >= 6; 
+        }
         
 
         
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ReadStudentInput(); 
+            // Read inputs and validate
+            ReadStudentInput();
+            if (studentID <= 0 || string.IsNullOrWhiteSpace(studName) || studAge <= 0 || string.IsNullOrWhiteSpace(course))
+            {
+                // Stop if inputs are invalid
+                MessageBox.Show("Please enter valid student details.");
+                return;
+            }
 
-            //using a list to read all the student data
-            List <string> studentRecs = new List<string>();
-
+            // Read existing records from file into a list
+            List<string> studentRecs = new List<string>();
             try
             {
                 using (StreamReader reader = new StreamReader(filepath))
                 {
-                    string line; 
+                    string line;
                     while ((line = reader.ReadLine()) != null)
                     {
-                        line = line.Trim();
                         if (!string.IsNullOrWhiteSpace(line))
                         {
-                            studentRecs.Add(line); 
+                            studentRecs.Add(line.Trim());
                         }
                     }
                 }
             }
             catch (Exception ee)
             {
-                MessageBox.Show("Error reading the file" + ee.Message); 
-                throw;
+                MessageBox.Show("Error reading the file: " + ee.Message);
+                return;
             }
 
-            //updating the student information specified
+            // Flag to check if a matching student record is found
+            bool validStudentID = false;
 
+            // Update the record that matches the studentID
             for (int i = 0; i < studentRecs.Count; i++)
             {
                 string[] recs = studentRecs[i].Split(',').Select(p => p.Trim()).ToArray();
-
-                studentRecs[i] = $"{studentID}, {studName}, {studAge}, {course}";
+                if (recs[0] == studentID.ToString()) // Check if ID matches
+                {
+                    studentRecs[i] = $"{studentID}, {studName}, {studAge}, {course}"; // Update record
+                    validStudentID = true;
+                    break;
+                }
             }
-            
 
-            //writing updated records back to file 
+            if (!validStudentID)
+            {
+                MessageBox.Show("Student ID not found.");
+                return;
+            }
+
+            // Write updated records back to file
             try
             {
-                using (StreamWriter writer = new StreamWriter(filepath))
-                {
-                    foreach (string newrec in studentRecs)
-                    {
-                        writer.WriteLine(newrec); 
-                    }
-                    MessageBox.Show("Student details updated successfully"); 
-                }
+                File.WriteAllLines(filepath, studentRecs);
+                MessageBox.Show("Student details updated successfully.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error updating data" + ex.Message); 
-                throw;
+                MessageBox.Show("Error updating data: " + ex.Message);
+                return;
             }
 
-            LoadStudentData(); 
+            // Refresh the data grid to reflect changes
+            LoadStudentData();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -361,6 +394,26 @@ namespace FormProjectPRG2781
 
                 throw;
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            string studentID = string.Empty;
+
+            while (string.IsNullOrEmpty(studentID) || !ISValidStudentID(studentID))
+            {
+                studentID = Interaction.InputBox("Enter student ID");
+                if (string.IsNullOrEmpty(studentID))
+                {
+                    MessageBox.Show("No input provided");
+
+                }
+                else if (!ISValidStudentID(studentID))
+                {
+                    MessageBox.Show("Invalid ID format. Please enter valid student ID");
+                }
+            }
+
         }
     }
 }
