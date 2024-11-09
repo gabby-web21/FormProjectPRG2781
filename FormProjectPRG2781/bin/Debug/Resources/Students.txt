@@ -1,12 +1,10 @@
 601008, Hunter Schafer, 24, Mechanical Engineering
-6001002, Jasper Bugs, 21, Bachelor of Science
-6690983, Nolan Rivers, 21, Diploma in IT
-601005, Hunter Stone, 22, Mechanical Engineering
+601005, Gift Stone, 22, Mechanical Engineering
 601006, Willow Crane, 23, Bachelor of Arts
 601008, Hunter Schafer, 23, Mechanical Engineering
 601009, Felix Reid, 22, Diploma in IT
 601010, Luna Skye, 18, Bachelor of Computing
-601011, Leo Voss, 20, Bachelor of Science
+601011, Luna Skye, 18, Bachelor of Computing
 601012, Hazel Quinn, 19, Graphic Design
 601013, Rowan Fields, 23, Diploma in IT
 601014, Ivy Clarke, 22, Bachelor of Computing
@@ -16,10 +14,9 @@
 601020, Lyra Moon, 20, Bachelor of Science
 600937, Hannah Termia, 21, Graphic Design
 601007, Willow Crane, 23, Bachelor of Arts
-600850, Gabriella Phoebe Petersen, 20, Bachelor of Computing
+600850, Gabriella Petersen, 19, Bachelor of Computing
 600642, Kirsten Frederiks, 21, Diploma in IT
 600934, Ivy Cooper, 22, Bachelor of Graphics Design
 600983, Angelite Arendse, 19, Bachelor of Computing
 600845, Kaidy Edwards, 20, Bachelor of Computing
-600856, Jana Rademan, 21, Bachelor of Computing
 600982, Anouk Van Alphen, 21, Bachelor of Computing

@@ -233,7 +233,16 @@ namespace FormProjectPRG2781
 
                 // Update the student record in the list
                 int rowIndex = SearchAndHighlightStudent(textBox1.Text);
-                studentRecs[rowIndex] = $"{studentID}, {studName}, {studAge}, {course}"; // Update record
+                try
+                {
+                    studentRecs[rowIndex] = $"{studentID}, {studName}, {studAge}, {course}"; // Update record
+                }
+                catch(Exception exx)
+                {
+                    MessageBox.Show("Unable to change student ID's" + exx.Message);
+                    return; 
+                }
+               
 
                 try
                 {
@@ -360,22 +369,24 @@ namespace FormProjectPRG2781
 
         private void btn_Search_Click(object sender, EventArgs e)
         {
-            string studentID = string.Empty;
+            string studentID = Interaction.InputBox("Enter student ID to search:");
 
-            while (string.IsNullOrEmpty(studentID) || !ISValidStudentID(studentID))
+            if (string.IsNullOrEmpty(studentID) || !ISValidStudentID(studentID))
             {
-                studentID = Interaction.InputBox("Enter student ID");
-                if (string.IsNullOrEmpty(studentID))
-                {
-                    MessageBox.Show("No input provided");
-
-                }
-                else if (!ISValidStudentID(studentID))
-                {
-                    MessageBox.Show("Invalid ID format. Please enter valid student ID");
-                }
+                MessageBox.Show("Invalid input. Please enter a valid numeric Student ID with a minimum of 6 digits.");
+                return;
             }
 
+            int rowIndex = SearchAndHighlightStudent(studentID);
+
+            if (rowIndex == -1)
+            {
+                MessageBox.Show("Student ID not found.");
+            }
+            else
+            {
+                MessageBox.Show("Student record found and filtered");
+            }
             FilterStudents(studentID);
 
         }
@@ -383,21 +394,43 @@ namespace FormProjectPRG2781
         private void FilterStudents(string studentID)
         {
             table.Rows.Clear();
-            var filteredStudents = File.ReadAllLines(filepath)
-                .Where(record => record.Split(',')[0].Trim() == studentID)
-                .ToList();
-
-            if (filteredStudents.Count == 0)
+            if (File.Exists(filepath))
             {
-                MessageBox.Show("No student found with that ID");
+                try
+                {
+                    var filteredLines = File.ReadAllLines(filepath)
+                                            .Where(line => line.StartsWith(studentID + ","))
+                                            .ToList();
+
+                    if (filteredLines.Count > 0)
+                    {
+                        foreach (var line in filteredLines)
+                        {
+                            var fields = line.Split(',').Select(field => field.Trim()).ToArray();
+
+                            if (fields.Length == table.Columns.Count)
+                            {
+                                table.Rows.Add(fields);
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Data format error in line: {line}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No matching records found.", "Search Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred while filtering data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                foreach (var student in filteredStudents)
-                {
-                    string[] fields = student.Split(',').Select(field => field.Trim()).ToArray();
-                    table.Rows.Add(fields);
-                }
+                MessageBox.Show("File does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
