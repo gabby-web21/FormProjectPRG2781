@@ -50,10 +50,7 @@ namespace FormProjectPRG2781
                 MessageBox.Show("Please enter a numeric value for age e.g. 19");
                 return;
             }
-            else
-            {
-                studentID = int.Parse(textBox1.Text.Trim());
-            }
+            
             studName = textBox2.Text.Trim();
             //creating validation for age to make sure a numeric value for age is entered
             if (!int.TryParse(textBox3.Text, out studAge))
