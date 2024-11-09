@@ -188,51 +188,73 @@ namespace FormProjectPRG2781
             return studentID.All(char.IsDigit) && studentID.Length >= 6; 
         }
 
-
-
-        // Read existing records from file into a list
         List<string> studentRecs = new List<string>();
+        private bool isEditMode = false; //flag to check if we are able to edit 
+
         private void btn_Update_Click(object sender, EventArgs e)
         {
-            string studentIDInput = Interaction.InputBox("Enter the Student ID to update:");
-            MessageBox.Show("Please enter new information in the textboxes for student");  
-
-            if (string.IsNullOrWhiteSpace(studentIDInput) || !ISValidStudentID(studentIDInput))
+            // Frst get the Student ID using a interaction box 
+            if (!isEditMode)
             {
-                MessageBox.Show("Invalid Student ID. Please enter a valid numeric Student ID.");
-                return;
-            }
-            ReadStudentInput(); 
+                string studentIDInput = Interaction.InputBox("Enter the Student ID to update:");
+                if (string.IsNullOrWhiteSpace(studentIDInput) || !ISValidStudentID(studentIDInput))
+                {
+                    MessageBox.Show("Invalid Student ID. Please enter a valid numeric Student ID.");
+                    return;
+                }
 
-            // Search for the student and highlight the row
-            int rowIndex = SearchAndHighlightStudent(studentIDInput);
-            if (rowIndex == -1)
+                // Search for the student and highlight the row
+                int rowIndex = SearchAndHighlightStudent(studentIDInput);
+                if (rowIndex == -1)
+                {
+                    MessageBox.Show("Student ID not found.");
+                    return;
+                }
+
+                studentRecs = File.ReadAllLines(filepath).ToList(); // Read from file and put data in a list 
+                var selectedRecord = studentRecs[rowIndex].Split(','); // Assuming comma-separated values
+
+                // Populate the text boxes with current values
+                textBox1.Text = selectedRecord[0].Trim();
+                textBox2.Text = selectedRecord[1].Trim();
+                textBox3.Text = selectedRecord[2].Trim();
+                textBox4.Text = selectedRecord[3].Trim();
+
+                MessageBox.Show("Please edit the information in the text boxes and press 'Save Changes'.");
+
+                // Update button text and set edit mode to true
+                btn_Update.Text = "Save Changes";
+                isEditMode = true;
+            }
+            else
             {
-                MessageBox.Show("Student ID not found.");
-                return;
-            }
-            ReadStudentInput();
-            
+                //Save updated information if editing allowes
+                ReadStudentInput(); // Read new values from text boxes
 
-            // Update the student record
-            studentRecs = File.ReadAllLines(filepath).ToList();
-            studentRecs[rowIndex] = $"{studentID}, {studName}, {studAge}, {course}"; // Update record
+                // Update the student record in the list
+                int rowIndex = SearchAndHighlightStudent(textBox1.Text);
+                studentRecs[rowIndex] = $"{studentID}, {studName}, {studAge}, {course}"; // Update record
 
-            try
-            {
-                File.WriteAllLines(filepath, studentRecs);
-                MessageBox.Show("Student details updated successfully. Please refresh the system.");
-            }
-            catch (Exception ee)
-            {
-                MessageBox.Show("Error updating the file: " + ee.Message);
-                return;
-            }
+                try
+                {
+                    File.WriteAllLines(filepath, studentRecs); // Save to file
+                    MessageBox.Show("Student details updated successfully.");
+                }
+                catch (Exception ee)
+                {
+                    MessageBox.Show("Error updating the file: " + ee.Message);
+                }
 
-            // Refresh the data grid to reflect changes
-            LoadStudentData();
-            HighlightRow(rowIndex); // Highlight the updated row
+                // Refresh the data grid to reflect changes
+                LoadStudentData();
+                HighlightRow(rowIndex);
+
+                // Reset button text and edit mode flag
+                btn_Update.Text = "Update Student";
+                isEditMode = false;
+            }
         }
+
 
         private int SearchAndHighlightStudent(string studentID)
         {
