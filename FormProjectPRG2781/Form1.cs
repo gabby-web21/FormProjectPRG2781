@@ -434,6 +434,87 @@ namespace FormProjectPRG2781
             }
         }
 
-        
+        private void btn_ImportCSV_Click(object sender, EventArgs e)
+        {
+            ImportFromCSV();
+        }
+        private void ImportFromCSV()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "CSV files (*.csv)|*.csv";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string[] lines = File.ReadAllLines(openFileDialog.FileName);
+                List<string> importedRecords = new List<string>();
+
+                foreach (string line in lines)
+                {
+                    var values = line.Split(',').Select(value => value.Trim()).ToArray();
+                    if (values.Length == 4) 
+                    {
+                        
+                        if (int.TryParse(values[0], out int id) &&
+                            int.TryParse(values[2], out int age) &&
+                            !string.IsNullOrWhiteSpace(values[1]) &&
+                            !string.IsNullOrWhiteSpace(values[3]))
+                        {
+                            importedRecords.Add(line); // Add the valid line to the list
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Invalid data in line: {line}");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Invalid format in line: {line}");
+                    }
+                }
+
+                ShowPreview(importedRecords);
+            }
+        }
+
+        private void ShowPreview(List<string> importedRecords)
+        {
+            // Create a new form to display the preview
+            Form previewForm = new Form
+            {
+                Text = "Preview Imported Students",
+                Size = new Size(400, 300)
+            };
+
+            DataGridView dataGridView = new DataGridView
+            {
+                Dock = DockStyle.Fill,
+                DataSource = importedRecords.Select(record => record.Split(',').Select(value => value.Trim()).ToArray()).ToList()
+            };
+
+            Button btnSave = new Button
+            {
+                Text = "Save",
+                Dock = DockStyle.Bottom
+            };
+            btnSave.Click += (s, e) =>
+            {
+                // Append each record to the file
+                using (FileStream myStream = new FileStream(filepath, FileMode.Append, FileAccess.Write))
+                using (StreamWriter writer = new StreamWriter(myStream))
+                {
+                    foreach (var record in importedRecords)
+                    {
+                        writer.WriteLine(record);
+                    }
+                }
+
+                MessageBox.Show("Students imported successfully!");
+                LoadStudentData(); // Refresh the data grid
+                previewForm.Close();
+            };
+
+            previewForm.Controls.Add(dataGridView);
+            previewForm.Controls.Add(btnSave);
+            previewForm.ShowDialog();
+        }
     }
 }
