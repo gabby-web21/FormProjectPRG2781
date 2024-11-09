@@ -142,7 +142,7 @@ namespace FormProjectPRG2781
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_Add_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(filepath))
             {
@@ -181,7 +181,7 @@ namespace FormProjectPRG2781
         }
 
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btn_ViewAll_Click(object sender, EventArgs e)
         {
             //LoadStudentData(); 
             if (File.Exists(filepath))
@@ -271,7 +271,7 @@ namespace FormProjectPRG2781
 
         
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btn_Update_Click(object sender, EventArgs e)
         {
             // Read inputs and validate
             ReadStudentInput();
@@ -341,7 +341,7 @@ namespace FormProjectPRG2781
             LoadStudentData();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void btn_Clear_Click_1(object sender, EventArgs e)
         {
             textBox1.Text = "";
             textBox2.Text = "";
@@ -349,7 +349,7 @@ namespace FormProjectPRG2781
             textBox4.Text = "";
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btn_Delete_Click(object sender, EventArgs e)
         {
             string deleteStudentID = textBox1.Text.Trim();
             if (string.IsNullOrWhiteSpace(deleteStudentID))
@@ -396,7 +396,7 @@ namespace FormProjectPRG2781
             }
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void btn_Search_Click(object sender, EventArgs e)
         {
             string studentID = string.Empty;
 
