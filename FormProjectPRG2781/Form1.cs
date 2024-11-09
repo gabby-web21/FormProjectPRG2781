@@ -37,6 +37,7 @@ namespace FormProjectPRG2781
 
             dataGridView1.DataSource = table;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            LoadStudentData(); 
         }
 
         //creating a method for input from textboxes to reduce redundancy and clean up code
@@ -53,24 +54,28 @@ namespace FormProjectPRG2781
             
             studName = textBox2.Text.Trim();
             //creating validation for age to make sure a numeric value for age is entered
-            if (!int.TryParse(textBox3.Text, out studAge))
-            {
-
-                MessageBox.Show("Please enter a numeric value for age e.g. 19");
-                return;
-            }
-            else
-            {
-                studAge = int.Parse(textBox3.Text.Trim());
-            }
-            course = textBox4.Text.Trim();
-
+            studName = textBox2.Text.Trim();
             //Ensuring no nulls and whitespaces are accepted into txt file. 
-            if (studentID < 0|| string.IsNullOrWhiteSpace(studName) || string.IsNullOrWhiteSpace(course) || studAge < 0)
+            if (string.IsNullOrWhiteSpace(studName))
             {
-                MessageBox.Show("Please enter valid information in all fields required (ID, Name, Age, Course");
+                MessageBox.Show("Please enter a valid name.");
                 return;
             }
+
+            if (!int.TryParse(textBox3.Text.Trim(), out studAge) || studAge < 0)
+            {
+                MessageBox.Show("Please enter a valid numeric value for age.");
+                return;
+            }
+
+            course = textBox4.Text.Trim();
+            if (string.IsNullOrWhiteSpace(course))
+            {
+                MessageBox.Show("Please enter a valid course.");
+                return;
+            }
+
+            
         }
 
 
@@ -85,40 +90,27 @@ namespace FormProjectPRG2781
                 {
                     using (StreamReader reader = new StreamReader(filepath))
                     {
-                        string txt; 
+                        string line; 
                         
-                        while ((txt = reader.ReadLine()) != null)
+                        while ((line = reader.ReadLine()) != null)
                         {
                             //splitting the line of text into an array of values, seperating them using a comma and
                             //trimming any whitespace
-                            txt = txt.Trim();
+                            line = line.Trim();
 
-                            if (string.IsNullOrWhiteSpace(txt) || string.IsNullOrEmpty(txt))
+                            if (string.IsNullOrWhiteSpace(line))
                             {
                                 continue;
                             }
-                            string[] allValues = txt.Split(',').Select(value => value.Trim()).ToArray();
-
-                            //MessageBox.Show($"Found {allValues.Length} values in line: {txt}"); 
-
-                            
-
+                            string[] allValues = line.Split(',').Select(value => value.Trim()).ToArray();
                             if (allValues.Length == table.Columns.Count)
                             {
-                                try
-                                {
-                                    table.Rows.Add(allValues);
-                                }
-                                catch (Exception eBug)
-                                {
-                                    MessageBox.Show("Error adding rows" + eBug.Message);
-                                    
-                                }
+                               table.Rows.Add(allValues);
 
                             }
                             else
                             {
-                                MessageBox.Show($"Text file error : Expected {table.Columns.Count} values bt found {allValues.Length} in line {txt}");
+                                MessageBox.Show($"Text file error : Expected {table.Columns.Count} values bt found {allValues.Length} in line {line}");
 
                             }
 
@@ -130,8 +122,6 @@ namespace FormProjectPRG2781
                     MessageBox.Show("Error reading file" + ex.Message);
                     throw;
                 }
-
-
             }
             else
             {
@@ -141,19 +131,17 @@ namespace FormProjectPRG2781
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(filepath))
+            ReadStudentInput(); 
+            if(studentID<0 || string.IsNullOrWhiteSpace(studName) || studAge <0 || string.IsNullOrWhiteSpace(course))
             {
-                MessageBox.Show("File path is not set");
                 return; 
             }
-
+           
             //Creating a filestream to open or create file at specified filepath and specificying that the file should be open for 
             //appending, as well as indicating that the file will be opened with writing access.  
             using (FileStream myStream = new FileStream(filepath, FileMode.Append, FileAccess.Write))
-            {
-                using (StreamWriter writer = new StreamWriter(myStream))
-                {
-                    ReadStudentInput(); 
+            using (StreamWriter writer = new StreamWriter(myStream))
+            { 
                         try
                         {
                             writer.WriteLine($"{studentID}, {studName}, {studAge}, {course}");
@@ -165,79 +153,15 @@ namespace FormProjectPRG2781
                         {
                             MessageBox.Show("Error, data not saved" + ex.Message);
                         }
-
-                        textBox1.Clear();
-                        textBox2.Clear();
-                        textBox3.Clear();
-                        textBox4.Clear();
-                }
             }
-            
-
-            
+            ClearTextBoxes();
+            LoadStudentData(); 
         }
 
 
         private void btn_ViewAll_Click(object sender, EventArgs e)
         {
-            //LoadStudentData(); 
-            if (File.Exists(filepath))
-            {
-                //clearing rows to ensure no duplication
-                table.Rows.Clear();
-                try
-                {
-                    using (StreamReader reader = new StreamReader(filepath))
-                    {
-                        string txt;
-                        while ((txt = reader.ReadLine()) != null)
-                        {
-
-                            txt = txt.Trim();
-                            if (string.IsNullOrWhiteSpace(txt))
-                            {
-                                continue; 
-                            }
-                                //splitting the line of text into an array of values, seperating them using a comma and
-                                //trimming any whitespace
-                                string[] allValues = txt.Split(',').Select(value => value.Trim()).ToArray();
-
-                            if (allValues.Length == table.Columns.Count)
-                            {
-                                try
-                                {
-                                  table.Rows.Add(allValues);
-                                }
-                                catch (Exception eBug)
-                                {
-                                    MessageBox.Show("Error adding rows" + eBug.Message);
-                                    return;
-                                }
-
-                            }
-                            else
-                            {
-                                MessageBox.Show("Text file error");
-
-                            }
-
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error reading file" + ex.Message); 
-                    throw;
-                }
-
-
-            }
-            else
-            {
-                MessageBox.Show("File does not exist"); 
-            }
-
-
+            LoadStudentData(); 
         }
 
         //this method is for the information to autofill in the textboxes for convenience when editing or updating
@@ -252,9 +176,8 @@ namespace FormProjectPRG2781
                 textBox3.Text = selectedRow.Cells[2].Value.ToString();
                 textBox4.Text = selectedRow.Cells[3].Value.ToString();
             }
-
-            if(dataGridView1.CurrentRow == null)
-            {
+            else 
+            { 
                 MessageBox.Show("Please select a student record to update.");
                 return; 
             }
@@ -271,79 +194,99 @@ namespace FormProjectPRG2781
         List<string> studentRecs = new List<string>();
         private void btn_Update_Click(object sender, EventArgs e)
         {
-            // Read inputs and validate
-            ReadStudentInput();
-            if (studentID <= 0 || string.IsNullOrWhiteSpace(studName) || studAge <= 0 || string.IsNullOrWhiteSpace(course))
+            string studentIDInput = Interaction.InputBox("Enter the Student ID to update:");
+            MessageBox.Show("Please enter new information in the textboxes for student");  
+
+            if (string.IsNullOrWhiteSpace(studentIDInput) || !ISValidStudentID(studentIDInput))
             {
-                // Stop if inputs are invalid
-                MessageBox.Show("Please enter valid student details.");
+                MessageBox.Show("Invalid Student ID. Please enter a valid numeric Student ID.");
                 return;
             }
+            ReadStudentInput(); 
 
-            
-            try
-            {
-                using (StreamReader reader = new StreamReader(filepath))
-                {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        if (!string.IsNullOrWhiteSpace(line))
-                        {
-                            studentRecs.Add(line.Trim());
-                        }
-                    }
-                }
-            }
-            catch (Exception ee)
-            {
-                MessageBox.Show("Error reading the file: " + ee.Message);
-                return;
-            }
-
-            // Flag to check if a matching student record is found
-            bool validStudentID = false;
-
-            // Update the record that matches the studentID
-            for (int i = 0; i < studentRecs.Count; i++)
-            {
-                string[] recs = studentRecs[i].Split(',').Select(p => p.Trim()).ToArray();
-                if (recs[0] == studentID.ToString()) // Check if ID matches
-                {
-                    studentRecs[i] = $"{studentID}, {studName}, {studAge}, {course}"; // Update record
-                    validStudentID = true;
-                    break;
-                }
-            }
-
-            if (!validStudentID)
+            // Search for the student and highlight the row
+            int rowIndex = SearchAndHighlightStudent(studentIDInput);
+            if (rowIndex == -1)
             {
                 MessageBox.Show("Student ID not found.");
                 return;
             }
+            ReadStudentInput();
+            
 
-            // Write updated records back to file
+            // Update the student record
+            studentRecs = File.ReadAllLines(filepath).ToList();
+            studentRecs[rowIndex] = $"{studentID}, {studName}, {studAge}, {course}"; // Update record
+
             try
             {
                 File.WriteAllLines(filepath, studentRecs);
-                MessageBox.Show("Student details updated successfully.");
+                MessageBox.Show("Student details updated successfully. Please refresh the system.");
             }
-            catch (Exception ex)
+            catch (Exception ee)
             {
-                MessageBox.Show("Error updating data: " + ex.Message);
+                MessageBox.Show("Error updating the file: " + ee.Message);
                 return;
             }
 
             // Refresh the data grid to reflect changes
             LoadStudentData();
+            HighlightRow(rowIndex); // Highlight the updated row
+        }
+
+        private int SearchAndHighlightStudent(string studentID)
+        {
+            try
+            {
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    if (dataGridView1.Rows[i].Cells[0].Value != null && dataGridView1.Rows[i].Cells[0].Value.ToString() == studentID)
+                    {
+                        //highlights and scrolls to the selected row 
+                        dataGridView1.Rows[i].Selected = true;
+                        dataGridView1.FirstDisplayedScrollingRowIndex = i;
+                        return i;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show("Error occurred" + e.Message); 
+                throw;
+            }
+            return -1; //Not found
+
+
+        }
+
+        private void HighlightRow(int rowIndex)
+        {
+            // Reset previous highlights
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                row.DefaultCellStyle.BackColor = Color.White;
+                row.DefaultCellStyle.SelectionBackColor = Color.Blue; 
+            }
+
+            // Highlight the updated row
+            if (rowIndex >= 0 && rowIndex < dataGridView1.Rows.Count)
+            {
+                dataGridView1.Rows[rowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+            }
+        }
+
+        private void ClearTextBoxes()
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
         }
 
         private void btn_Clear_Click_1(object sender, EventArgs e)
         {
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
+            ClearTextBoxes(); 
         }
 
         private void btn_Delete_Click(object sender, EventArgs e)
@@ -411,16 +354,31 @@ namespace FormProjectPRG2781
                 }
             }
 
-
+            FilterStudents(studentID);
 
         }
 
         private void FilterStudents(string studentID)
         {
             table.Rows.Clear();
-            var filteredStudents = studentRecs.Where(record => record.Split(',')[0].Trim() == studentID).ToList(); 
+            var filteredStudents = File.ReadAllLines(filepath)
+                .Where(record => record.Split(',')[0].Trim() == studentID)
+                .ToList();
 
-            if()
+            if (filteredStudents.Count == 0)
+            {
+                MessageBox.Show("No student found with that ID");
+            }
+            else
+            {
+                foreach (var student in filteredStudents)
+                {
+                    string[] fields = student.Split(',').Select(field => field.Trim()).ToArray();
+                    table.Rows.Add(fields);
+                }
+            }
         }
+
+        
     }
 }
