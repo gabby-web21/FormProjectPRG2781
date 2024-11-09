@@ -1,0 +1,25 @@
+600938, Angelite Arendse, 19, Bachelor of Computing
+600874, Kaidy Edwards, 20, Bachelor of Computing
+600999, Kirsten Frederiks, 21, Diploma in IT
+666662, Opium Blaze, 23, Bachelor of Computing
+601001, Jasper Thorne, 23, Bachelor of Science
+601003, Nolan Rivers, 21, Diploma in IT
+601004, Evelyn Storm, 19, Bachelor of Computing
+601005, Hunter Stone, 22, Mechanical Engineering
+601006, Willow Crane, 23, Bachelor of Arts
+601007, Orion Drake, 20, Bachelor of Computing
+601008, Autumn Brooke, 21, Business Administration
+601009, Felix Reid, 22, Diploma in IT
+601010, Luna Skye, 18, Bachelor of Computing
+601011, Leo Voss, 20, Bachelor of Science
+601012, Hazel Quinn, 19, Graphic Design
+601013, Rowan Fields, 23, Diploma in IT
+601014, Ivy Clarke, 22, Bachelor of Computing
+601015, Silas Knight, 21, Architecture
+601016, Aurora West, 18, Bachelor of Arts
+601017, Ezra Vale, 22, Mechanical Engineering
+601018, Aria Finch, 19, Bachelor of Computing
+601019, Finn Wilder, 21, Graphic Design
+601020, Lyra Moon, 20, Bachelor of Science
+600937, Hannah Termia, 21, Graphic Design
+546556, vuhvh, 656, fuygb

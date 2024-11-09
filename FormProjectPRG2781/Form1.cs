@@ -267,10 +267,11 @@ namespace FormProjectPRG2781
         {
             return studentID.All(char.IsDigit) && studentID.Length >= 6; 
         }
-        
 
-        
 
+
+        // Read existing records from file into a list
+        List<string> studentRecs = new List<string>();
         private void btn_Update_Click(object sender, EventArgs e)
         {
             // Read inputs and validate
@@ -282,8 +283,7 @@ namespace FormProjectPRG2781
                 return;
             }
 
-            // Read existing records from file into a list
-            List<string> studentRecs = new List<string>();
+            
             try
             {
                 using (StreamReader reader = new StreamReader(filepath))
@@ -414,6 +414,16 @@ namespace FormProjectPRG2781
                 }
             }
 
+
+
+        }
+
+        private void FilterStudents(string studentID)
+        {
+            table.Rows.Clear();
+            var filteredStudents = studentRecs.Where(record => record.Split(',')[0].Trim() == studentID).ToList(); 
+
+            if()
         }
     }
 }

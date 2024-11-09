@@ -50,9 +50,9 @@
             // 
             // btn_Add
             // 
-            this.btn_Add.Location = new System.Drawing.Point(142, 324);
+            this.btn_Add.Location = new System.Drawing.Point(34, 321);
             this.btn_Add.Name = "btn_Add";
-            this.btn_Add.Size = new System.Drawing.Size(75, 23);
+            this.btn_Add.Size = new System.Drawing.Size(75, 33);
             this.btn_Add.TabIndex = 0;
             this.btn_Add.Text = "Add Student";
             this.btn_Add.UseVisualStyleBackColor = true;
@@ -60,9 +60,9 @@
             // 
             // btn_ViewAll
             // 
-            this.btn_ViewAll.Location = new System.Drawing.Point(802, 82);
+            this.btn_ViewAll.Location = new System.Drawing.Point(624, 75);
             this.btn_ViewAll.Name = "btn_ViewAll";
-            this.btn_ViewAll.Size = new System.Drawing.Size(121, 23);
+            this.btn_ViewAll.Size = new System.Drawing.Size(121, 30);
             this.btn_ViewAll.TabIndex = 1;
             this.btn_ViewAll.Text = "View All Students";
             this.btn_ViewAll.UseVisualStyleBackColor = true;
@@ -70,9 +70,9 @@
             // 
             // btn_Update
             // 
-            this.btn_Update.Location = new System.Drawing.Point(78, 359);
+            this.btn_Update.Location = new System.Drawing.Point(793, 339);
             this.btn_Update.Name = "btn_Update";
-            this.btn_Update.Size = new System.Drawing.Size(212, 23);
+            this.btn_Update.Size = new System.Drawing.Size(125, 37);
             this.btn_Update.TabIndex = 1;
             this.btn_Update.Text = "Update Student Information";
             this.btn_Update.UseVisualStyleBackColor = true;
@@ -116,20 +116,20 @@
             // 
             // btn_Summary
             // 
-            this.btn_Summary.Location = new System.Drawing.Point(582, 82);
+            this.btn_Summary.Location = new System.Drawing.Point(591, 339);
             this.btn_Summary.Name = "btn_Summary";
-            this.btn_Summary.Size = new System.Drawing.Size(214, 23);
+            this.btn_Summary.Size = new System.Drawing.Size(116, 41);
             this.btn_Summary.TabIndex = 1;
             this.btn_Summary.Text = "Generate Summary Report";
             this.btn_Summary.UseVisualStyleBackColor = true;
             // 
             // btn_Delete
             // 
-            this.btn_Delete.Location = new System.Drawing.Point(375, 82);
+            this.btn_Delete.Location = new System.Drawing.Point(842, 75);
             this.btn_Delete.Name = "btn_Delete";
-            this.btn_Delete.Size = new System.Drawing.Size(121, 23);
+            this.btn_Delete.Size = new System.Drawing.Size(76, 30);
             this.btn_Delete.TabIndex = 1;
-            this.btn_Delete.Text = "Delete a Student";
+            this.btn_Delete.Text = "Delete";
             this.btn_Delete.UseVisualStyleBackColor = true;
             this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
             // 
@@ -137,10 +137,10 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(375, 111);
+            this.dataGridView1.Location = new System.Drawing.Point(339, 111);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.Size = new System.Drawing.Size(543, 271);
+            this.dataGridView1.Size = new System.Drawing.Size(579, 222);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -148,7 +148,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(122, 101);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(111, 20);
+            this.textBox1.Size = new System.Drawing.Size(157, 20);
             this.textBox1.TabIndex = 4;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -156,28 +156,28 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(122, 155);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(124, 20);
+            this.textBox2.Size = new System.Drawing.Size(157, 20);
             this.textBox2.TabIndex = 4;
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(124, 209);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(111, 20);
+            this.textBox3.Size = new System.Drawing.Size(155, 20);
             this.textBox3.TabIndex = 4;
             // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(124, 270);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(111, 20);
+            this.textBox4.Size = new System.Drawing.Size(155, 20);
             this.textBox4.TabIndex = 4;
             // 
             // btn_Clear
             // 
-            this.btn_Clear.Location = new System.Drawing.Point(405, 12);
+            this.btn_Clear.Location = new System.Drawing.Point(204, 321);
             this.btn_Clear.Name = "btn_Clear";
-            this.btn_Clear.Size = new System.Drawing.Size(75, 23);
+            this.btn_Clear.Size = new System.Drawing.Size(75, 33);
             this.btn_Clear.TabIndex = 1;
             this.btn_Clear.Text = "Clear";
             this.btn_Clear.UseVisualStyleBackColor = true;
@@ -185,9 +185,9 @@
             // 
             // btn_Search
             // 
-            this.btn_Search.Location = new System.Drawing.Point(405, 41);
+            this.btn_Search.Location = new System.Drawing.Point(375, 75);
             this.btn_Search.Name = "btn_Search";
-            this.btn_Search.Size = new System.Drawing.Size(75, 23);
+            this.btn_Search.Size = new System.Drawing.Size(75, 30);
             this.btn_Search.TabIndex = 5;
             this.btn_Search.Text = "Search";
             this.btn_Search.UseVisualStyleBackColor = true;
@@ -196,10 +196,10 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Modern No. 20", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 24);
+            this.label6.Font = new System.Drawing.Font("Elephant", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(12, 22);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(377, 31);
+            this.label6.Size = new System.Drawing.Size(524, 41);
             this.label6.TabIndex = 7;
             this.label6.Text = "Student Management System";
             // 
