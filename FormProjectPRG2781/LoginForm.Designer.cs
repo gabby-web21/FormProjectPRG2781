@@ -154,7 +154,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(247)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(574, 624);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -162,7 +162,7 @@
             this.Controls.Add(this.Showpasswordchk);
             this.Controls.Add(this.btn_Login);
             this.Controls.Add(this.Username);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

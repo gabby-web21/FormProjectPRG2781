@@ -16,7 +16,7 @@ namespace FormProjectPRG2781
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new SplashScreen());
             
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);

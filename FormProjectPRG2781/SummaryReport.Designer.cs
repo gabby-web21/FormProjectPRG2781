@@ -38,7 +38,7 @@
             // 
             // richTextBoxSumm
             // 
-            this.richTextBoxSumm.Location = new System.Drawing.Point(65, 44);
+            this.richTextBoxSumm.Location = new System.Drawing.Point(64, 66);
             this.richTextBoxSumm.Name = "richTextBoxSumm";
             this.richTextBoxSumm.Size = new System.Drawing.Size(792, 237);
             this.richTextBoxSumm.TabIndex = 0;
@@ -48,9 +48,9 @@
             // 
             this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.btnBack.ForeColor = System.Drawing.Color.White;
-            this.btnBack.Location = new System.Drawing.Point(369, 287);
+            this.btnBack.Location = new System.Drawing.Point(376, 309);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(107, 36);
+            this.btnBack.Size = new System.Drawing.Size(107, 49);
             this.btnBack.TabIndex = 1;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = false;
@@ -59,21 +59,21 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Elephant", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Elephant", 13.875F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Orange;
-            this.label6.Location = new System.Drawing.Point(258, 0);
+            this.label6.Location = new System.Drawing.Point(258, 16);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(320, 41);
+            this.label6.Size = new System.Drawing.Size(362, 47);
             this.label6.TabIndex = 8;
             this.label6.Text = "Summary Report";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(208, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(182, 8);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(42, 40);
+            this.pictureBox1.Size = new System.Drawing.Size(68, 52);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
@@ -82,13 +82,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(247)))));
-            this.ClientSize = new System.Drawing.Size(891, 335);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(891, 370);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.richTextBoxSumm);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SummaryReport";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SummaryReport";
             this.Load += new System.EventHandler(this.SummaryReport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

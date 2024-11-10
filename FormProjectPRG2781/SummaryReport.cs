@@ -42,7 +42,8 @@ namespace FormProjectPRG2781
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Form1 main = new Form1();
+            main.Show();
         }
     }
 }

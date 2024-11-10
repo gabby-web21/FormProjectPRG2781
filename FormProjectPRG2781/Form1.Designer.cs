@@ -284,6 +284,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(2008, 748);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBox1);
@@ -305,6 +306,7 @@
             this.Controls.Add(this.btn_Summary);
             this.Controls.Add(this.btn_ViewAll);
             this.Controls.Add(this.btn_Add);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
