@@ -1,0 +1,2 @@
+You have 22 students
+The average age is 20

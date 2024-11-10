@@ -516,5 +516,59 @@ namespace FormProjectPRG2781
             previewForm.Controls.Add(btnSave);
             previewForm.ShowDialog();
         }
+
+        private void btn_Summary_Click(object sender, EventArgs e)
+        {
+            string filenewPath = @"Resources\Summary.txt";
+            //string oldFilePath = @"C:\Users\User\OneDrive\Documents\Kaidy\2nd year\PRG282\test project\Before.txt";
+            //FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
+            try
+            {
+                if (File.Exists(filenewPath))
+                {
+                    Console.WriteLine("Success");
+                }
+                else
+                {
+                    Console.WriteLine("does not exist and could not be created");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+
+            using (StreamReader sr = new StreamReader(filepath))
+            {
+                string text;
+                int studCount = 0;
+                int sumAge = 0;
+                double avgAge = 0;
+                while ((text = sr.ReadLine()) != null)
+                {
+                    string[] info = text.Split(',');
+                    string studentNumber = info[0];
+                    string name = info[1];
+                    int age = int.Parse(info[2]);
+                    string courseCode = info[3];
+                    studCount++;
+                    sumAge += age;
+                }
+                if (studCount > 0)
+                {
+                    avgAge = sumAge / studCount;
+                }
+
+                using (StreamWriter sw = new StreamWriter(filenewPath))
+                {
+                    sw.WriteLine($"You have {studCount} students");
+                    sw.WriteLine("The average age is {0}", avgAge);
+                }
+
+                SummaryReport summaryReportForm = new SummaryReport();
+                summaryReportForm.Show();
+            }
+        }
     }
 }
