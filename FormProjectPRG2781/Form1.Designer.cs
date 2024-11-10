@@ -46,9 +46,8 @@
             this.btn_Clear = new System.Windows.Forms.Button();
             this.btn_Search = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.btn_ImportCSV = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -84,7 +83,7 @@
             // 
             this.btn_Update.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.btn_Update.ForeColor = System.Drawing.Color.White;
-            this.btn_Update.Location = new System.Drawing.Point(1588, 652);
+            this.btn_Update.Location = new System.Drawing.Point(1594, 659);
             this.btn_Update.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_Update.Name = "btn_Update";
             this.btn_Update.Size = new System.Drawing.Size(252, 71);
@@ -96,40 +95,44 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(60, 204);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 25);
+            this.label1.Size = new System.Drawing.Size(122, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "StudentID:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(60, 312);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 25);
+            this.label2.Size = new System.Drawing.Size(79, 25);
             this.label2.TabIndex = 2;
             this.label2.Text = "Name:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(60, 415);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 25);
+            this.label3.Size = new System.Drawing.Size(60, 25);
             this.label3.TabIndex = 2;
             this.label3.Text = "Age:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(60, 533);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 25);
+            this.label4.Size = new System.Drawing.Size(94, 25);
             this.label4.TabIndex = 2;
             this.label4.Text = "Course:";
             // 
@@ -137,7 +140,7 @@
             // 
             this.btn_Summary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.btn_Summary.ForeColor = System.Drawing.Color.White;
-            this.btn_Summary.Location = new System.Drawing.Point(1180, 652);
+            this.btn_Summary.Location = new System.Drawing.Point(676, 654);
             this.btn_Summary.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_Summary.Name = "btn_Summary";
             this.btn_Summary.Size = new System.Drawing.Size(232, 79);
@@ -242,31 +245,6 @@
             this.label6.TabIndex = 7;
             this.label6.Text = "Student Management System";
             // 
-            // btn_ImportCSV
-            // 
-            this.btn_ImportCSV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.btn_ImportCSV.ForeColor = System.Drawing.Color.White;
-            this.btn_ImportCSV.Location = new System.Drawing.Point(219, 690);
-            this.btn_ImportCSV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btn_ImportCSV.Name = "btn_ImportCSV";
-            this.btn_ImportCSV.Size = new System.Drawing.Size(200, 50);
-            this.btn_ImportCSV.TabIndex = 9;
-            this.btn_ImportCSV.Text = "Import CSV";
-            this.btn_ImportCSV.UseVisualStyleBackColor = false;
-            this.btn_ImportCSV.Click += new System.EventHandler(this.btn_ImportCSV_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(676, 643);
-            this.button1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(324, 50);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Developer Console";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -278,6 +256,18 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "_________________________________________________________________________________" +
     "___________________________________________";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(1177, 659);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(148, 71);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "Create CSV";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // pictureBox1
             // 
@@ -295,10 +285,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(2008, 748);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btn_ImportCSV);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btn_Search);
             this.Controls.Add(this.textBox4);
@@ -347,10 +336,9 @@
         private System.Windows.Forms.Button btn_Clear;
         private System.Windows.Forms.Button btn_Search;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btn_ImportCSV;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

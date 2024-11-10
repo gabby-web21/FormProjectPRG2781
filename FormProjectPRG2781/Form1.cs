@@ -16,13 +16,22 @@ namespace FormProjectPRG2781
 {
     public partial class Form1 : Form
     {
+
+        DataTable tableCSV = new DataTable();
+        DataTable table = new DataTable();
         public Form1()
         {
             
             InitializeComponent();
-            
+            tableCSV = new DataTable();
+            tableCSV.Columns.Add("StudentID");
+            tableCSV.Columns.Add("Name");
+            tableCSV.Columns.Add("Age");
+            tableCSV.Columns.Add("Course");
+
+            //for csv
         }
-        DataTable table = new DataTable();
+        
         //specifying file path for text file
         string filepath = @"Resources\Students.txt";
         private int studentID;
@@ -476,7 +485,7 @@ namespace FormProjectPRG2781
                 ShowPreview(importedRecords);
             }
         }
-
+        
         private void ShowPreview(List<string> importedRecords)
         {
             // Create a new form to display the preview
@@ -594,12 +603,12 @@ namespace FormProjectPRG2781
 
         private void btn_ImportCSV_MouseHover(object sender, EventArgs e)
         {
-            btn_ImportCSV.BackColor = Color.Orange;
+         
         }
 
         private void btn_ImportCSV_MouseLeave(object sender, EventArgs e)
         {
-            btn_ImportCSV.BackColor = Color.Gray;
+           
         }
 
         private void btn_Search_MouseHover(object sender, EventArgs e)
@@ -656,5 +665,66 @@ namespace FormProjectPRG2781
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string txtFilePath = @"Resources\Students.txt";
+            string csvFilePath = @"Resources\Imported Students.csv"; 
+
+            // Load data from Students.txt to DataTable
+            if (File.Exists(txtFilePath))
+            {
+                tableCSV.Rows.Clear();
+                try
+                {
+                    using (StreamReader reader = new StreamReader(txtFilePath))
+                    {
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            line = line.Trim();
+                            if (string.IsNullOrWhiteSpace(line))
+                                continue;
+
+                            string[] allValues = line.Split(',').Select(value => value.Trim()).ToArray();
+                            if (allValues.Length == tableCSV.Columns.Count)
+                            {
+                                tableCSV.Rows.Add(allValues);
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Text file error: Expected {tableCSV.Columns.Count} values but found {allValues.Length} in line {line}");
+                            }
+                        }
+                    }
+
+                    using (StreamWriter writer = new StreamWriter(csvFilePath, false, Encoding.UTF8))
+                    {
+                        // Write CSV header
+                        string[] columnNames = tableCSV.Columns.Cast<DataColumn>().Select(column => column.ColumnName).ToArray();
+                        writer.WriteLine(string.Join(",", columnNames));
+
+                        // Write data rows
+                        foreach (DataRow row in tableCSV.Rows)
+                        {
+                            string[] fields = row.ItemArray.Select(field => field.ToString()).ToArray();
+                            writer.WriteLine(string.Join(",", fields));
+                        }
+                    }
+
+                    MessageBox.Show("CSV file created successfully at " + csvFilePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                    throw;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Text file does not exist");
+            }
+        }
     }
+    
 }

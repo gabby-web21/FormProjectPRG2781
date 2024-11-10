@@ -6,7 +6,7 @@
 601010, Luna Skye, 18, Bachelor of Computing
 601011, Luna Skye, 18, Bachelor of Computing
 601012, Hazel Quinn, 19, Graphic Design
-601013, Rowan Fields, 23, Diploma in IT
+601013, Rowan Fields, 24, Diploma in IT
 601014, Ivy Clarke, 22, Bachelor of Computing
 601016, Aurora West, 18, Bachelor of Arts
 601017, Ezra Vale, 22, Mechanical Engineering

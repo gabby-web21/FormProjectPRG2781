@@ -49,7 +49,7 @@
             // usernametxt
             // 
             this.usernametxt.Location = new System.Drawing.Point(72, 15);
-            this.usernametxt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.usernametxt.Margin = new System.Windows.Forms.Padding(4);
             this.usernametxt.Name = "usernametxt";
             this.usernametxt.Size = new System.Drawing.Size(256, 31);
             this.usernametxt.TabIndex = 0;
@@ -57,8 +57,8 @@
             // 
             // Passwordtxt
             // 
-            this.Passwordtxt.Location = new System.Drawing.Point(82, 18);
-            this.Passwordtxt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Passwordtxt.Location = new System.Drawing.Point(72, 17);
+            this.Passwordtxt.Margin = new System.Windows.Forms.Padding(4);
             this.Passwordtxt.Name = "Passwordtxt";
             this.Passwordtxt.Size = new System.Drawing.Size(256, 31);
             this.Passwordtxt.TabIndex = 1;
@@ -69,7 +69,7 @@
             // 
             this.Username.AutoSize = true;
             this.Username.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Username.Location = new System.Drawing.Point(176, 185);
+            this.Username.Location = new System.Drawing.Point(215, 185);
             this.Username.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Username.Name = "Username";
             this.Username.Size = new System.Drawing.Size(124, 45);
@@ -82,7 +82,7 @@
             this.btn_Login.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Login.ForeColor = System.Drawing.Color.White;
             this.btn_Login.Location = new System.Drawing.Point(172, 545);
-            this.btn_Login.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Login.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Login.Name = "btn_Login";
             this.btn_Login.Size = new System.Drawing.Size(207, 40);
             this.btn_Login.TabIndex = 4;
@@ -94,7 +94,7 @@
             // 
             this.Showpasswordchk.AutoSize = true;
             this.Showpasswordchk.Location = new System.Drawing.Point(261, 405);
-            this.Showpasswordchk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Showpasswordchk.Margin = new System.Windows.Forms.Padding(4);
             this.Showpasswordchk.Name = "Showpasswordchk";
             this.Showpasswordchk.Size = new System.Drawing.Size(197, 29);
             this.Showpasswordchk.TabIndex = 6;
@@ -105,7 +105,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(183, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(199, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(156, 156);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -163,7 +163,7 @@
             this.Controls.Add(this.btn_Login);
             this.Controls.Add(this.Username);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoginForm";
