@@ -46,6 +46,7 @@
             this.btn_Search = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.btn_ImportCSV = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -232,12 +233,22 @@
             this.btn_ImportCSV.UseVisualStyleBackColor = true;
             this.btn_ImportCSV.Click += new System.EventHandler(this.btn_ImportCSV_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(703, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(162, 26);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Developer Console";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1004, 389);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_ImportCSV);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btn_Search);
@@ -287,6 +298,7 @@
         private System.Windows.Forms.Button btn_Search;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btn_ImportCSV;
+        private System.Windows.Forms.Button button1;
     }
 }
 

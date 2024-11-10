@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Design;
-using Microsoft.VisualBasic; 
+using Microsoft.VisualBasic;
+using System.Threading;
 
 namespace FormProjectPRG2781
 {
@@ -17,8 +18,9 @@ namespace FormProjectPRG2781
     {
         public Form1()
         {
+            
             InitializeComponent();
-
+            
         }
         DataTable table = new DataTable();
         //specifying file path for text file
@@ -27,7 +29,7 @@ namespace FormProjectPRG2781
         private string studName;
         private int studAge;
         private string course; 
-        
+
         private void Form1_Load(object sender, EventArgs e)
         {
             table.Columns.Add("Student ID", typeof(int));
