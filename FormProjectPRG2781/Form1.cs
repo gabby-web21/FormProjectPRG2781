@@ -522,8 +522,7 @@ namespace FormProjectPRG2781
         private void btn_Summary_Click(object sender, EventArgs e)
         {
             string filenewPath = @"Resources\Summary.txt";
-            //string oldFilePath = @"C:\Users\User\OneDrive\Documents\Kaidy\2nd year\PRG282\test project\Before.txt";
-            //FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
+            
             try
             {
                 if (File.Exists(filenewPath))
@@ -532,12 +531,12 @@ namespace FormProjectPRG2781
                 }
                 else
                 {
-                    Console.WriteLine("does not exist and could not be created");
+                    Console.WriteLine("Does not exist and could not be created");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Error loading summary: " + ex.Message);
                 throw;
             }
 
@@ -572,5 +571,86 @@ namespace FormProjectPRG2781
                 summaryReportForm.Show();
             }
         }
+
+        private void btn_Clear_MouseHover(object sender, EventArgs e)
+        {
+            btn_Clear.BackColor = Color.Orange;
+        }
+
+        private void btn_Clear_MouseLeave(object sender, EventArgs e)
+        {
+            btn_Clear.BackColor = Color.Gray;
+        }
+
+        private void btn_Add_MouseHover(object sender, EventArgs e)
+        {
+            btn_Add.BackColor = Color.Orange;
+        }
+
+        private void btn_Add_MouseLeave(object sender, EventArgs e)
+        {
+            btn_Add.BackColor = Color.Gray;
+        }
+
+        private void btn_ImportCSV_MouseHover(object sender, EventArgs e)
+        {
+            btn_ImportCSV.BackColor = Color.Orange;
+        }
+
+        private void btn_ImportCSV_MouseLeave(object sender, EventArgs e)
+        {
+            btn_ImportCSV.BackColor = Color.Gray;
+        }
+
+        private void btn_Search_MouseHover(object sender, EventArgs e)
+        {
+            btn_Search.BackColor = Color.Orange;
+        }
+
+        private void btn_Search_MouseLeave(object sender, EventArgs e)
+        {
+            btn_Search.BackColor = Color.Gray;
+        }
+
+        private void btn_ViewAll_MouseHover(object sender, EventArgs e)
+        {
+            btn_ViewAll.BackColor = Color.Orange;
+        }
+
+        private void btn_ViewAll_MouseLeave(object sender, EventArgs e)
+        {
+            btn_ViewAll.BackColor = Color.Gray;
+        }
+
+        private void btn_Delete_MouseHover(object sender, EventArgs e)
+        {
+            btn_Delete.BackColor = Color.Orange;
+        }
+
+        private void btn_Delete_MouseLeave(object sender, EventArgs e)
+        {
+            btn_Delete.BackColor = Color.Gray;
+        }
+
+        private void btn_Summary_MouseHover(object sender, EventArgs e)
+        {
+            btn_Summary.BackColor = Color.Orange;
+        }
+
+        private void btn_Summary_MouseLeave(object sender, EventArgs e)
+        {
+            btn_Summary.BackColor = Color.Gray;
+        }
+
+        private void btn_Update_MouseHover(object sender, EventArgs e)
+        {
+            btn_Update.BackColor = Color.Orange;
+        }
+
+        private void btn_Update_MouseLeave(object sender, EventArgs e)
+        {
+            btn_Update.BackColor = Color.Gray;
+        }
+
     }
 }
