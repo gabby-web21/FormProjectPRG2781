@@ -28,8 +28,8 @@ namespace FormProjectPRG2781
             tableCSV.Columns.Add("Name");
             tableCSV.Columns.Add("Age");
             tableCSV.Columns.Add("Course");
+            getIni(); 
 
-            //for csv
         }
         
         //specifying file path for text file
@@ -203,6 +203,7 @@ namespace FormProjectPRG2781
 
         private void btn_Update_Click(object sender, EventArgs e)
         {
+            
             // Frst get the Student ID using a interaction box 
             if (!isEditMode)
             {
@@ -284,6 +285,8 @@ namespace FormProjectPRG2781
                     if (dataGridView1.Rows[i].Cells[0].Value != null && dataGridView1.Rows[i].Cells[0].Value.ToString() == studentID)
                     {
                         //highlights and scrolls to the selected row 
+                        dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+                        dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
                         dataGridView1.Rows[i].Selected = true;
                         dataGridView1.FirstDisplayedScrollingRowIndex = i;
                         return i;
@@ -597,7 +600,7 @@ namespace FormProjectPRG2781
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void  btn_CSV_Click(object sender, EventArgs e)
         {
             string txtFilePath = @"Resources\Students.txt";
             string csvFilePath = @"Resources\Imported Students.csv"; 
@@ -655,6 +658,52 @@ namespace FormProjectPRG2781
             {
                 MessageBox.Show("Text file does not exist");
             }
+        }
+
+        private void getIni()
+        {
+            Settings get = new Settings();
+            get.readIni();
+
+            if (get.theme == "dark")
+            {
+                btn_toggle.Text = "LIGHT MODE";
+                this.BackColor = Color.FromArgb(44, 44, 44);
+                this.ForeColor = Color.White;
+
+                dataGridView1.BackgroundColor = Color.FromArgb(45, 45, 48);
+                dataGridView1.DefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48);
+                dataGridView1.DefaultCellStyle.ForeColor = Color.White;
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 30, 30);
+                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            }
+            else
+            {
+                btn_toggle.Text = "DARK MODE";
+                this.BackColor = Color.White;
+                this.ForeColor = Color.FromArgb(44, 44, 44);
+
+                dataGridView1.BackgroundColor = Color.White;
+                dataGridView1.DefaultCellStyle.BackColor = Color.White;
+                dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+            }
+        }
+
+        private void btn_toggle_Click(object sender, EventArgs e)
+        {
+            Settings set = new Settings();
+            if (btn_toggle.Text == "DARK MODE")
+            {
+                set.writeIni("SECTION", "key", "dark");
+            }
+            else
+            {
+                set.writeIni("SECTION", "key", "light"); 
+            }
+            getIni();
+
         }
     }
     
