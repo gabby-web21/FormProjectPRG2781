@@ -652,5 +652,9 @@ namespace FormProjectPRG2781
             btn_Update.BackColor = Color.Gray;
         }
 
+        private void btn_Search_MouseHover_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
