@@ -1,2 +1,2 @@
 [SECTION]
-key=dark
+key=light
